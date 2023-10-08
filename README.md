@@ -5,17 +5,30 @@ A simple python package/script to create grid map based skill plots inspired by 
 
 Intention is to create a simple tool to create skill plots for CVs or similar.
 
-### Horizontal
+## Table of contents
+- [SkillPlot](#skillplot)
+  - [Table of contents](#table-of-contents)
+  - [Examples](#examples)
+- [How to use](#how-to-use)
+  - [Install from source](#install-from-source)
+  - [1. Create a configuration file](#1-create-a-configuration-file)
+  - [2. Edit the configuration file](#2-edit-the-configuration-file)
+  - [3. Plot the skill plot](#3-plot-the-skill-plot)
+
+## Examples
+<!-- no toc -->
+**Horizontal**
 <p align="center">
   <img src="docs/skillplot.png" width=500/>
 </p>
 
-### Vertical
+**Vertical**
 <p align="center">
   <img src="docs/skillplot_v.png" height=300/>
 </p>
 
-# Install from source
+# How to use
+## Install from source
 Until the package is on PyPI, you can install it from source with
 ```bash
 git clone
@@ -23,7 +36,6 @@ cd skillplot
 pip install -e .
 ```
 
-# How to use
 ## 1. Create a configuration file
 Create an example configuration file with
 ```bash
@@ -46,13 +58,13 @@ levels:
 - [16, 91, 1, 82, 95] # Professional
 rows: ["Private\nHobby stuff", During study, Professional]
 ```
-#### `cols`:
+**`cols`**:
 The labels for the columns. The first label is the leftmost column, the second label the second column and so on.
-#### `rows`:
+**`rows`**:
 The labels for the rows. The first label is the topmost row, the second label the second row and so on.
-#### `level_names`:
+**`level_names`**:
 The labels for the levels. The first label is the lowest level, the second label the second lowest level and so on.
-#### `levels`:
+**`levels`**:
 The actual data, describing the skill level for each tile. The first list in the list of lists represents the first row, the second list the second row and so on.
  
 ## 3. Plot the skill plot
