@@ -1,0 +1,9 @@
+cols: [Python, C++, SQL, Git, Docker]
+level_names: [Rare, Occasional, Regular, Frequent, Daily]
+levels:
+# The "levels" field is a list of lists representing the levels, where each list represents a row in the plot.
+# Order of colums: Python, C++, SQL, Git, Docker
+- [92, 87, 49, 29, 45]  # Private Hobby stuff
+- [78, 80, 18, 18, 71] # During study
+- [16, 91, 1, 82, 95] # Professional
+rows: ["Private\nHobby stuff", During study, Professional]
