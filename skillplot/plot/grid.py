@@ -4,18 +4,29 @@ import numpy as np
 from skillplot.io.plot_data import PlotData
 
 def plot_on_ax(fig, ax, plot_data, MAX_ACTIVITY=100):
+    # 
     # Plot the data
     img = ax.pcolormesh(plot_data.levels, cmap='Greens', edgecolor='w', linewidth=10, vmin=0, vmax=MAX_ACTIVITY)
 
-    # Use the field names for the y-ticks
-    ax.set_yticks(np.arange(0.5, len(plot_data.rows)))
-    # Set the y-tick labels
-    ax.set_yticklabels(plot_data.rows)
+    # Check if data_rows is an attribute of the plot_data object
 
+    if hasattr(plot_data, 'data_rows'):
+        rows = plot_data.data_rows
+    else:
+        rows = plot_data.rows
+    # Use the row names for the y-ticks
+    ax.set_yticks(np.arange(0.5, len(rows)))
+    # Set the y-tick labels
+    ax.set_yticklabels(rows)
+
+    if hasattr(plot_data, 'data_cols'):
+        cols = plot_data.data_cols
+    else:
+        cols = plot_data.cols
     # Use the tool names for the x-ticks
-    ax.set_xticks(np.arange(0.5, len(plot_data.cols)))
+    ax.set_xticks(np.arange(0.5, len(cols)))
     # Set the x-tick labels
-    ax.set_xticklabels(plot_data.cols)
+    ax.set_xticklabels(cols)
     # Rotate the x-tick labels
     plt.xticks(rotation=45)
 
@@ -25,11 +36,13 @@ def plot_on_ax(fig, ax, plot_data, MAX_ACTIVITY=100):
     return img
 
 def grid_plot(plot_data: PlotData, output: str):
-    FIG_SIZE = np.array((len(plot_data.cols)*1.3, len(plot_data.rows)))*1.5
+    FIG_SIZE = np.array((len(plot_data.cols), len(plot_data.rows)*1.2))*1.5
     MAX_ACTIVITY = 100
 
+    # Font size
+    plt.rcParams.update({'font.size': 15})
     # Create a pcolormesh plot
-    fig, ax1 = plt.subplots(figsize=FIG_SIZE)
+    fig, ax1 = plt.subplots(figsize=FIG_SIZE, dpi=300)
 
     img1 = plot_on_ax(fig, ax1, plot_data)
 
@@ -46,3 +59,6 @@ def grid_plot(plot_data: PlotData, output: str):
     plt.tight_layout()
 
     plt.savefig(output)
+    # Also as pdf
+    ext = output.split('.')[-1]
+    plt.savefig(output.replace(ext, 'pdf'))

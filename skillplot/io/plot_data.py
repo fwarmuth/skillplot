@@ -15,9 +15,24 @@ class PlotData:
     levels: List[List[int]] = None
 
     def __post_init__(self):
+        # If the rows or cols are given as a dictionary, convert them to a list
+        if type(self.rows) == dict:
+            self.data_rows = [row for row_group in self.rows.values() for row in row_group]
+        if type(self.cols) == dict:
+            self.data_cols = [col for col_group in self.cols.values() for col in col_group]
+
+        # If the levels are not given, create random levels
         if self.levels is None:
             self.levels = np.random.randint(0, 100, size=(len(self.rows), len(self.cols))).tolist()
-
+    
+    def get_rows(self):
+        if hasattr(self, 'data_rows'):
+            return self.data_rows
+        return self.rows
+    def get_cols(self):
+        if hasattr(self, 'data_cols'):
+            return self.data_cols
+        return self.cols
 
     @classmethod
     def from_yaml(self, filename):
@@ -52,10 +67,10 @@ class PlotData:
             # Add comments with names to the data fields
             yaml_obj['levels'].yaml_set_start_comment('The "levels" field is a list of lists representing the levels, '\
                                                     'where each list represents a row in the plot.\n'\
-                                                    f'Order of colums: {", ".join(yaml_obj["cols"])}\n')
+                                                    f'{", ".join(self.get_cols())}\n')
 
             # Add comments with names to the area field
-            for i, area in enumerate(yaml_obj['rows']):
+            for i, area in enumerate(self.get_rows()):
                 # Remove line breaks from the area names
                 area = area.replace('\n', ' ')
                 yaml_obj['levels'].yaml_add_eol_comment(f'{area}', i)
