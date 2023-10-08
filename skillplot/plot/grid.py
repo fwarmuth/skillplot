@@ -36,11 +36,11 @@ def plot_on_ax(fig, ax, plot_data, MAX_ACTIVITY=100):
     return img
 
 def grid_plot(plot_data: PlotData, output: str):
-    FIG_SIZE = np.array((len(plot_data.cols), len(plot_data.rows)*1.2))*1.5
+    FIG_SIZE = np.array((len(plot_data.get_cols())*1.2, len(plot_data.get_rows())))
     MAX_ACTIVITY = 100
 
     # Font size
-    plt.rcParams.update({'font.size': 15})
+    # plt.rcParams.update({'font.size': 15})
     # Create a pcolormesh plot
     fig, ax1 = plt.subplots(figsize=FIG_SIZE, dpi=300)
 
@@ -48,7 +48,7 @@ def grid_plot(plot_data: PlotData, output: str):
 
     # Add a colorbar next to the plot with the same height as the plot and label it
     # cbar = fig.colorbar(img, fraction=0.046, pad=0.04, label='Activity')
-    cbar = fig.colorbar(img1)
+    cbar = fig.colorbar(img1, ax=ax1, fraction=0.046, pad=0.14)
     # Use the activity levels for the colorbar ticks
     spacing = MAX_ACTIVITY/len(plot_data.level_names)
     cbar.set_ticks(np.arange(spacing/2, MAX_ACTIVITY, spacing))
