@@ -7,7 +7,7 @@ Intention is to create a simple tool to create skill plots for CVs or similar.
 
 ### Horizontal
 <p align="center">
-  <img src="docs/skillplot.png" width=300/>
+  <img src="docs/skillplot.png" width=500/>
 </p>
 
 ### Vertical
