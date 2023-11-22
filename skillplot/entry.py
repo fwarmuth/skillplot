@@ -62,7 +62,9 @@ def new(filename, num_rows, num_cols, num_row_groups, num_col_groups):
 @cli.command()
 @click.argument('filename', type=click.Path(exists=True), required=True)
 @click.argument('output', type=click.Path(exists=False), required=False, default='skillplot.png')
-def plot(filename, output):
+@click.option('-t', '--tikz', is_flag=True, help='Save the plot as a tikz file')
+@click.option('-p', '--pgf', is_flag=True, help='Save the plot as a pgf file')
+def plot(filename, output, tikz, pgf):
     """Plot a skillplot from a YAML file."""
     logger.info('Starting skillplot')
     logger.debug('Debugging enabled')
@@ -72,7 +74,7 @@ def plot(filename, output):
     logger.debug(f'Loaded plot data from {filename}')
 
     # Create a GridPlot
-    grid_plot(plot_data, output)
+    grid_plot(plot_data, output, tikz, pgf)
 
     plot_data.to_yaml(filename)
 

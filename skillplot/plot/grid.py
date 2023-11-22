@@ -35,7 +35,7 @@ def plot_on_ax(fig, ax, plot_data, MAX_ACTIVITY=100):
 
     return img
 
-def grid_plot(plot_data: PlotData, output: str):
+def grid_plot(plot_data: PlotData, output: str, tikz: bool = False, pgf: bool = False):
     FIG_SIZE = np.array((len(plot_data.get_cols())*1.2, len(plot_data.get_rows())))
     MAX_ACTIVITY = 100
 
@@ -57,8 +57,17 @@ def grid_plot(plot_data: PlotData, output: str):
 
 
     plt.tight_layout()
-
+    # Save the plot as png
     plt.savefig(output)
     # Also as pdf
     ext = output.split('.')[-1]
     plt.savefig(output.replace(ext, 'pdf'))
+    # Also as pgf
+    if pgf:
+        ext = output.split('.')[-1]
+        plt.savefig(output.replace(ext, 'pgf'))
+    # Also as tikz
+    if tikz:
+        import tikzplotlib
+        ext = output.split('.')[-1]
+        tikzplotlib.save(output.replace(ext, 'tex'))
