@@ -58,14 +58,14 @@ levels:
 - [16, 91, 1, 82, 95] # Professional
 rows: ["Private\nHobby stuff", During study, Professional]
 ```
-**`cols`**:
-The labels for the columns. The first label is the leftmost column, the second label the second column and so on.
-**`rows`**:
-The labels for the rows. The first label is the topmost row, the second label the second row and so on.
-**`level_names`**:
-The labels for the levels. The first label is the lowest level, the second label the second lowest level and so on.
-**`levels`**:
-The actual data, describing the skill level for each tile. The first list in the list of lists represents the first row, the second list the second row and so on.
+**`cols`**:\
+The labels for the columns. The first label is the leftmost column, the second label the second column and so on.\
+**`rows`**:\
+The labels for the rows. The first label is the topmost row, the second label the second row and so on.\
+**`level_names`**:\
+The labels for the levels. The first label is the lowest level, the second label the second lowest level and so on.\
+**`levels`**:\
+The actual data, describing the skill level for each tile. The first list in the list of lists represents the first row, the second list the second row and so on.\
  
 ## 3. Plot the skill plot
 ```bash
