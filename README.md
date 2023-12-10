@@ -1,4 +1,8 @@
-> **_NOTE:_**  In progress. Only experimental. Not ready for easy use yet.
+> **_NOTE:_**  Only experimental. Not ready for easy use yet.
+
+<p align="center">
+  <img src="docs/logo.jpeg" width=200/>
+</p>
 
 # SkillPlot
 A simple python package/script to create grid map based skill plots inspired by Githubs activity map. It is based on [matplotlib](https://matplotlib.org/) pcolormesh plotting.
